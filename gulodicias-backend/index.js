@@ -20,9 +20,9 @@ const options = {
 
 
 const server = https.createServer(options, app)
-
-server.removeAllListeners(() => {
-    console.log('listeners removidos')
+server.close(err, (err) => {
+    if (err) console.log(err)
+    console.log('server close')
 })
 server.listen(443, () => {
     console.log('Server Running')
@@ -31,5 +31,7 @@ server.listen(443, () => {
         console.log('webhook created')
     })
 })
+
+
 
 
