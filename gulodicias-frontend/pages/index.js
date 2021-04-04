@@ -25,7 +25,6 @@ const Index = ({ products }) => {
                     }
                 </main>
             </div>
-            <pre>{JSON.stringify(cart, null, 2)}</pre>
         </div>
     )
 }
