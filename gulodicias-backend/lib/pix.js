@@ -116,7 +116,7 @@ const createPixCharge = async () => {
             nome: 'Robson Luiz'
         },
         valor: {
-            original: '12.50',
+            original: '0.10',
         },
         chave: keyPix,
         solicitacaoPagador: 'Cobrança das docuras',
