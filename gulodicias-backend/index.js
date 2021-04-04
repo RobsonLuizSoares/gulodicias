@@ -20,7 +20,7 @@ const options = {
 
 
 const server = https.createServer(options, app)
-server.close(err, (err) => {
+server.close((err) => {
     if (err) console.log(err)
     console.log('server close')
 })
