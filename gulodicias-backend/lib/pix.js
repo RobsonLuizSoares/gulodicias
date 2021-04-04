@@ -130,7 +130,7 @@ const createPixCharge = async () => {
 }
 
 
-const createWebHook = async () => {
+const createWebhook = async () => {
     const keyPix = process.env.KEY_PIX
     const token = await getToken()
     const accessToken = token.access_token
@@ -164,7 +164,7 @@ const createWebHook = async () => {
 
 module.exports = {
     createPixCharge,
-    createWebHook
+    createWebhook
 }
 
 
