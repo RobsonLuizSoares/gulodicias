@@ -29,7 +29,7 @@ const Cart = () => {
             })
             order.items = items
             setOrderStatus('ordering')
-            const formData = await axios.post('http://localhost:3001/create-order', order)
+            const formData = await axios.post('https://api-gulodicias.liberty.app.br/create-order', order)
             setQRCode(formData.data.qrcode.imagemQrcode)
             setOrderStatus('order-received')
         }
