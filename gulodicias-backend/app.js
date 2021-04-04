@@ -21,7 +21,7 @@ app.post('/create-order', async (req, res) => {
     res.send({ ok: 1, qrcode, billing })
 })
 
-app.post('/webhook/pix', (req, res) => {
+app.post('/webhook/pix*', (req, res) => {
     console.log('webhook received')
     console.log(req.body)
     if (!req.client.authorized) {
