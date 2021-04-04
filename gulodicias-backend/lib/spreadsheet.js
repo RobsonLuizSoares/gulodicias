@@ -32,7 +32,7 @@ const saveOrder = async (order) => {
             'Subtotal': item.price * item.quantity,
             'Total do Pedido': total,
             'Status': 'Aguardando Pagamento',
-            'cpf': order.cpf
+            'cpf': 'order.cpf'
         }
         return row
     })

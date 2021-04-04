@@ -102,24 +102,28 @@ const getLoc = async (accessToken, locId) => {
     }
 }
 
-const createPixCharge = async () => {
+const createPixCharge = async (order) => {
     const keyPix = process.env.KEY_PIX
     const token = await getToken()
     const accessToken = token.access_token
+
+    const total = order.items.reduce((prev, curr) => {
+        return prev + curr.price * curr.quantity
+    }, 0)
 
     const billingData = {
         calendario: {
             expiracao: 3600,
         },
         devedor: {
-            cpf: '12345678909',
-            nome: 'Robson Luiz'
+            cpf: order.cpf,
+            nome: order.name
         },
         valor: {
-            original: '0.04',
+            original: total.toFixed(2),
         },
         chave: keyPix,
-        solicitacaoPagador: 'Cobrança das docuras',
+        solicitacaoPagador: 'Gulodícias que alegram meus dias',
     }
 
     const billing = await createCharge(accessToken, billingData)
