@@ -130,8 +130,41 @@ const createPixCharge = async () => {
 }
 
 
+const createWebHook = async () => {
+    const keyPix = process.env.KEY_PIX
+    const token = await getToken()
+    const accessToken = token.access_token
+
+    const certified = fs.readFileSync('../' + process.env.GN_CERTIFIED)
+    const data = JSON.stringify({
+        webhookUrl: 'https://api-gulodicias.liberty.app.br/webhook/pix'
+    })
+
+    const agent = new https.Agent({
+        pfx: certified,
+        passphrase: ''
+    })
+
+    const config = {
+        method: 'PUT',
+        url: baseURL + '/v2/webhook/' + keyPix,
+        headers: {
+            Authorization: 'Bearer ' + accessToken,
+            'Content-type': 'application/json'
+        },
+        httpsAgent: agent,
+        data: data,
+    }
+
+    const result = await axios(config)
+    return result.data
+
+}
+
+
 module.exports = {
-    createPixCharge
+    createPixCharge,
+    createWebHook
 }
 
 

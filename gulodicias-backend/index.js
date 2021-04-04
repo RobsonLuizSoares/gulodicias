@@ -4,6 +4,8 @@ require('dotenv').config({ path: '../.env.production' })
 const https = require('https')
 const fs = require('fs')
 const app = require('./app')
+const { createWebhook } = require('./lib/pix')
+
 const options = {
     //tls
     key: fs.readFileSync('/etc/letsencrypt/live/api-gulodicias.liberty.app.br/privkey.pem'),
@@ -18,6 +20,11 @@ const options = {
 
 
 const server = https.createServer(options, app)
-server.listen(443)
-
+server.listen(443, () => {
+    console.log('Server Running')
+    console.log('Create webhook for pix')
+    createWebhook().then(() => {
+        console.log('webhook created')
+    })
+})
 

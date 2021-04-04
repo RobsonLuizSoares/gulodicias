@@ -21,4 +21,13 @@ app.post('/create-order', async (req, res) => {
     res.send({ ok: 1, qrcode, billing })
 })
 
+app.post('/webhook/pix', (req, res) => {
+    console.log(req.client)
+    console.log(req.body)
+    if (!req.client.authorized) {
+        return res.status(401).send('Invalid client certificate')
+    }
+    res.send({ Ok: 1 })
+})
+
 module.exports = app
