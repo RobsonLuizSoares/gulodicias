@@ -21,7 +21,7 @@ const options = {
 
 const server = https.createServer(options, app)
 
-
+server.removeAllListeners()
 
 server.listen(443, () => {
     console.log('Server Running')
