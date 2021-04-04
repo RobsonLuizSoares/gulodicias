@@ -21,8 +21,8 @@ const options = {
 
 const server = https.createServer(options, app)
 
-server.listenerCount(() => {
-    console.log('servers', server)
+server.removeAllListeners(() => {
+    console.log('listeners removidos')
 })
 
 server.listen(443, () => {
