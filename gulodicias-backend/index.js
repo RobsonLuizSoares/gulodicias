@@ -20,6 +20,10 @@ const options = {
 
 
 const server = https.createServer(options, app)
+
+server.removeAllListeners(() => {
+    console.log('listeners removidos')
+})
 server.listen(443, () => {
     console.log('Server Running')
     console.log('Create webhook for pix')
@@ -27,4 +31,5 @@ server.listen(443, () => {
         console.log('webhook created')
     })
 })
+
 
