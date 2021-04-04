@@ -24,17 +24,17 @@ const server = https.createServer(options, app)
 /* server.removeAllListeners()
 server.close(() => {
     console.log('server closed')
+    process.on("SIGTERM")
+    process.on('SIGKILL')
 })*/
-process.on("SIGTERM")
-process.on('SIGKILL')
 
-/* server.listen(443, () => {
+server.listen(443, () => {
     console.log('Server Running')
     console.log('Create webhook for pix')
     createWebhook().then(() => {
         console.log('webhook created')
     })
-}) */
+})
 
 
 
