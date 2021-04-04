@@ -21,9 +21,7 @@ const options = {
 
 const server = https.createServer(options, app)
 
-server.removeListener(433, () => {
-    console.log('listener removido')
-})
+server.removeAllListeners()
 
 /* server.listen(443, () => {
     console.log('Server Running')
