@@ -21,7 +21,9 @@ const options = {
 
 const server = https.createServer(options, app)
 
-
+server.listenerCount(() => {
+    console.log('servers', server)
+})
 
 server.listen(443, () => {
     console.log('Server Running')
