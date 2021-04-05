@@ -69,7 +69,35 @@ const updateOrder = async (orderId, status) => {
 }
 
 
+const getOrder = async (orderId) => {
+    await doc.useServiceAccountAuth({
+        client_email: process.env.EMAIL_GOOGLE_API,
+        private_key: credenciais.private_key
+    })
+    await doc.loadInfo()
+    const sheet = doc.sheetsByIndex[1]
+    const maxRows = sheet.rowCount
+    await sheet.loadCells('A1:A' + maxRows)
+    await sheet.loadCells('H1:I' + maxRows)
+    const validIndex = [...Array(maxRows - 1).keys()]
+
+    for await (let i of validIndex) {
+        const cell = sheet.getCell(1 + i, 0)
+        if (cell.value) {
+            if (cell.value === orderId) {
+                console.log(1 + i, cell.value)
+                const statusCell = await sheet.getCell(1 + i, 8)
+                return statusCell.value
+            }
+        } else {
+            break
+        }
+    }
+    return null
+}
+
 module.exports = {
     saveOrder,
-    updateOrder
+    updateOrder,
+    getOrder
 }

@@ -57,9 +57,13 @@ export const CartProvider = ({ children }) => {
         })
     }
 
+    const clean = () => {
+        window.localStorage.removeItem('cart')
+        setCart({})
+    }
 
     return (
-        <CartContext.Provider value={{ cart, addToCart, removeFromCart, changeQuantity }}>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart, changeQuantity, clean }}>
             {children}
         </CartContext.Provider>
     )

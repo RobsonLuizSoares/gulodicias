@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 
-const { saveOrder, updateOrder } = require('./lib/spreadsheet')
+const { saveOrder, updateOrder, getOrder } = require('./lib/spreadsheet')
 const { createPixCharge } = require('./lib/pix')
 
 const app = express()
@@ -19,6 +19,11 @@ app.post('/create-order', async (req, res) => {
     const { qrcode, billing } = pixCharge
     await saveOrder({ ...req.body, id: billing.txid })
     res.send({ ok: 1, qrcode, billing })
+})
+
+app.get('/order/:txid', async (req, res) => {
+    const status = await getOrder(req.params.txid)
+    res.send({ ok: req.params.txid, status })
 })
 
 app.post('/webhook/pix*', async (req, res) => {
