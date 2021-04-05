@@ -17,7 +17,7 @@ const Cart = () => {
     const router = useRouter()
     useEffect(() => {
         if (data && data.status === 'Pago com PIX') {
-            //limpar carrinho
+            //limpar carrinho. FEITO
             cart.clean()
             setTimeout(() => {
                 router.push('/')
