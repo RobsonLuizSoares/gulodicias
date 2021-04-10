@@ -32,7 +32,7 @@ const Cart = () => {
             cart.clean()
             setTimeout(() => {
                 router.push('/')
-            }, 3500)
+            }, 5500)
         }
     }, [data])
     const form = useFormik({
